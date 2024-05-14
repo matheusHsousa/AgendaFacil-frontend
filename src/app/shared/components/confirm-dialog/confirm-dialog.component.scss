@@ -1,0 +1,25 @@
+.title {
+    display: flex;
+    padding-top: 12px;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+  }
+  
+  .message {
+    margin-top: 20px; /* Ajuste conforme necessário */
+  }
+  
+  .custom-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px; /* Ajuste conforme necessário */
+  }
+  
+  .cancel-button {
+    margin-right: 10px; /* Adicione margem entre os botões */
+  }
+
+  .mat-mdc-dialog-actions{
+    justify-content: end !important;
+  }

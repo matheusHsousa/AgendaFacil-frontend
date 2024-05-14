@@ -1,0 +1,18 @@
+<h2 mat-dialog-title class="title">
+  Deseja realmente {{ values.name }} essa Empresa?
+
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</h2>
+
+<mat-dialog-content>
+    <h3>{{ values.text }}</h3>
+    <div mat-dialog-actions>
+      <button mat-raised-button mat-dialog-close class="button-width">Cancelar</button>
+      <button mat-raised-button color="primary" class="button-width" (click)="Confirm()">
+        Confirmar
+      </button>
+    </div>
+</mat-dialog-content>
+

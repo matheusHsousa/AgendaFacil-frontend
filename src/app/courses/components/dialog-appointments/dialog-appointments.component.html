@@ -1,0 +1,35 @@
+<div>
+  <mat-toolbar color="primary">AGENDAMENTOS</mat-toolbar>
+
+  <div class="table-wrapper">
+    <table mat-table [dataSource]="dataSource" >
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Data </th>
+        <td mat-cell *matCellDef="let element" class="width-110"> {{element.date}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="times">
+        <th mat-header-cell *matHeaderCellDef> Horários </th>
+        <td mat-cell *matCellDef="let element; let i = index">
+          <button *ngFor="let time of element.times" mat-button (click)="selectTime(element.date, time)" class="time-button">
+            {{ time }}
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="['date', 'times']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['date', 'times']"></tr>
+    </table>
+  </div>
+
+  <div class="pagination">
+    <button mat-icon-button (click)="previousWeek()">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <button mat-icon-button (click)="nextWeek()">
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+  </div>
+</div>
+

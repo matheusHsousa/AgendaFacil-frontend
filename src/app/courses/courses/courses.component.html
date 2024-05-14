@@ -1,0 +1,75 @@
+<div class="margin-30">
+  <div class="search-container">
+
+    <form [formGroup]="filter" class="form-container">
+  
+      <div class="div-container" >
+  
+        <mat-form-field class="full-width font-white" appearance="outline">
+          <mat-label class="font-white">Nome da empresa</mat-label>
+          <input matInput placeholder="Ex. Barbearia mario e maria" class="font-white" formControlName="name" calss="input-100"/>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="input" class="full-width">
+          <mat-label class="font-white">Tipo</mat-label>
+          <mat-select formControlName="type" class="input-100">
+            <mat-option *ngFor="let category of categorys" [value]="category.tipos">
+              {{ category.tipos }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+      </div>
+  
+      <div class="button-container">
+        <button class="button-width" mat-raised-button (click)="submite()">Filtrar</button>
+        <button class="button-width" mat-raised-button color="primary" (click)="clean()">Limpar</button>
+      </div>
+  
+    </form>
+  
+  </div>
+  
+  
+
+  <mat-card-content class="padding-0">
+    <div class="container gap-45">
+      <div class="cardStyle" *ngFor="let cardData of cardDataList">
+        <mat-card class="cardContainer ">
+         
+          <div>
+            <img class="logo" src="{{ cardData.iconPerfil || '../../../../assets/img/vitrine-barraca-default.jpg' }}" />
+          </div>
+          <div>
+            <div class="cardTitle">
+              <mat-card-title>{{ cardData.customer }}</mat-card-title>
+            </div>
+  
+            <mat-card-subtitle>{{ cardData.type }}</mat-card-subtitle>
+            <mat-card-content>
+              <p>{{ cardData.description }}</p>
+            </mat-card-content>
+            <mat-card-actions class="gap-10">
+              <button
+                class="button-width"
+                mat-raised-button
+                (click)="openDialog(cardData)"
+              >
+                Detalhes
+              </button>
+              <button class="button-width" mat-raised-button color="primary" (click)="openAppointmentes(cardData)">
+                Ver horarios
+              </button>
+            </mat-card-actions>
+          </div>
+      
+        </mat-card>
+      </div>
+    </div>
+    <ng-template #loading>
+      <div class="loading-spiner">
+        <mat-spinner></mat-spinner>
+      </div>
+    </ng-template>
+  </mat-card-content>
+</div>

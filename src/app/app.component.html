@@ -1,0 +1,91 @@
+<div
+  [ngClass]="{ overflowHidden: loaderService.isLoading | async }"
+  class="w-100 test"
+>
+  <div *ngIf="loaderService.isLoading | async" class="loader_container">
+    <mat-spinner [diameter]="70"></mat-spinner>
+  </div>
+
+  <mat-toolbar *ngIf="isAuthenticated" class="fixed-toolbar color-bd">
+    <div class="toolbar-content">
+      <span class="padding-left-10">{{ currentRouteName }}</span>
+      <div class="ico">
+        <img
+          *ngIf="isAuthenticated && user"
+          [src]="urlImage ? urlImage : '../../../assets/img/icone.webp'"
+          alt=""
+          class="round-icon"
+        />
+        <span *ngIf="isAuthenticated && user" class="margin-right">{{
+          user.customer
+        }}</span>
+      </div>
+    </div>
+  </mat-toolbar>
+
+  <mat-sidenav-container
+  >
+    <mat-sidenav
+      *ngIf="isAuthenticated"
+      mode="side"
+      opened
+      class="margin-10 color-menu"
+    >
+      <div>
+        <img
+          src="../assets/img/126790.png"
+          class="icon-width"
+          routerLink="courses"
+        />
+      </div>
+      <div>
+        <a
+          routerLink="courses"
+          matTooltip="Agendas disponíveis"
+          matTooltipPosition="after"
+        >
+          <mat-icon class="margin-top-bot-fist">event</mat-icon>
+        </a>
+      </div>
+      <div *ngIf="shouldShowIcon(['ADMIN'])">
+        <a
+          routerLink="admin"
+          matTooltip="Administração"
+          matTooltipPosition="after"
+        >
+          <mat-icon class="margin-top-bot">settings</mat-icon>
+        </a>
+      </div>
+      <div *ngIf="shouldShowIcon(['ADMIN'])">
+        <a
+          routerLink="./cadastrados"
+          matTooltip="Cadastrados"
+          matTooltipPosition="after"
+        >
+          <mat-icon class="margin-top-bot">people</mat-icon>
+        </a>
+      </div>
+      <div>
+        <div *ngIf="shouldShowIcon(['ADMIN', 'CUSTOMER'])">
+          <a
+            routerLink="customer"
+            matTooltip="Clientes"
+            matTooltipPosition="after"
+          >
+            <mat-icon class="margin-top-bot">work</mat-icon>
+          </a>
+        </div>
+        <a (click)="logout()" matTooltip="Logout" matTooltipPosition="after">
+          <mat-icon class="margin-top-bot logout">exit_to_app</mat-icon>
+        </a>
+      </div>
+    </mat-sidenav>
+
+    <mat-sidenav-content
+      [ngClass]="{ 'margin-30-sidenav': isAuthenticated && !isLoginPage() }"
+    >
+      <ng-container *ngIf="isAuthenticated"> </ng-container>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

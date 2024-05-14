@@ -1,0 +1,140 @@
+<div class="margin-30">
+  <mat-dialog-content class="mat-typography">
+    {{ data.value.title }}
+  </mat-dialog-content>
+
+  <div class="image-container">
+    <div class="left-image large-image" (click)="trocarPosicaoImagens(0)">
+      <img
+        [src]="getPreviewUrl(fotos[0])"
+        alt="Large Image"
+        class="large-image"
+      />
+    </div>
+
+    <div class="right-section">
+      <div class="image-row">
+        <div
+          *ngFor="let file of fotos.slice(1); let i = index"
+          class="small-image"
+          (click)="trocarPosicaoImagens(i + 1)"
+        >
+          <img [src]="getPreviewUrl(file)" alt="Small Image" class="image" />
+        </div>
+      </div>
+      <app-google-maps></app-google-maps>
+    </div>
+  </div>
+
+  <div class="margin-top-12">
+    <h1 class="margin-bottom-0"><b>{{ data.value.customer }}</b></h1>
+    <p class="margin-bottom-30" class="font-size-13"> {{ data.value.type }}</p>
+    <h3><b>Descrição:</b> {{ data.value.description }}</h3>
+  </div>
+
+ 
+ 
+  <mat-divider></mat-divider>
+
+ 
+  <div class="margin-top-12">
+    <p>
+      <b>Endereço:</b>  {{ data.value.address }}, {{ data.value.addressNumber }} -
+       {{ data.value.city }}/{{ data.value.state }}, {{ data.value.CEP }}
+     </p>
+     <p> <b>Telefone:</b> {{ data.value.celNumber }}</p>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="margin-top-bottom-12"> 
+    <div class="d-flex align-cente">
+      <b>Nota média:</b>
+      <span class="star" *ngFor="let star of getStarsArray(5); let i = index" [class.filled]="i < nota.mediaAvaliacoes">&#9733;</span>
+      <div class="margin-left-10">
+        <p>{{ nota.numAvaliadores }} Avaliações do estabelecimento</p>
+      </div>
+    </div>
+    <div class="rating">
+      <b>Dê sua avaliação:</b>
+      <ngx-stars [color]="'#f8d159'" [size]="1" (ratingOutput)="onRatingSet($event)"></ngx-stars>
+    </div>  
+  </div>
+
+  <mat-divider></mat-divider>
+
+<div class="comments-section">
+  <h2>Comentários:</h2>
+
+  <div class="comments-container">
+    <div *ngFor="let comment of comments" >
+
+      <div class="d-grid">
+        <div class="d-flex gap-10 align-center ">
+          <img class="icon" src="{{ comment.iconPerfil || '../../../../assets/img/vitrine-barraca-default.jpg' }}" />
+         
+           <div class="d-grid">
+              <div class="d-grid border-comment">
+                <span><b>{{ comment.customer }}</b></span>
+                <span>{{ comment.comment_text }}</span>
+              </div>
+                <span class="responder" (click)="isAswer(comment.customer, comment.id)">Responder</span>
+            </div>
+        </div>  
+      </div>
+      
+        <div *ngIf="comment.replies && comment.replies.length > 0">
+          <span class="seeMore" (click)="toggleReplies(comment)">
+            {{ comment.expanded ? 'Ver menos' : 'Ver mais' }}
+          </span>         
+          
+          <div [hidden]="!comment.expanded">
+            <div class="d-grid reply-container reply-line">
+            <div class="d-flex gap-10 align-center margin-10" *ngFor="let reply of comment.replies">
+              <img class="icon" src="{{ reply.iconPerfil || '../../../../assets/img/vitrine-barraca-default.jpg' }}" />
+            <div class="d-grid">
+              <div class="d-grid" [ngClass]="{'border-comment-customer': reply.id_User === commentIscustomer, 'border-comment': !reply.id_User || reply.id_User !== commentIscustomer}">
+               
+                  <span><b>{{ reply.customer }}</b></span>
+                  <span>{{ reply.reply_text }}</span>
+                  <span class="hours">{{ reply.timestamp | date:'dd/MM/yyyy HH:mm:' }}</span>
+           
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      
+    </div>
+  </div>
+  
+  <div class="container-input-comment">
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>{{ label }}</mat-label>
+      <div class="textarea-container">
+        <textarea matInput placeholder="Ex. Gostei muito do local..." [(ngModel)]="commentText"></textarea>
+        <button [hidden]="!isAnsewr" class="button-icon-close" matTooltip="Fechar comentario" mat-button (click)="closeIsAnswer()"> <mat-icon>close</mat-icon></button>
+        <button type="submit" class="button-icon" mat-icon-button (click)="!isAnsewr ? submitComment() : submitReply()" (click)="resetCommentText()">
+          <mat-icon>send</mat-icon>
+        </button>
+      </div>
+    </mat-form-field>
+  </div>
+</div>
+
+  <mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close class="button-width" (click)="OpenAppointmentes()">
+      Ver Agenda
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      class="button-width"
+      (click)="getLocal()"
+    >
+      Chat
+    </button>
+  </mat-dialog-actions>
+</div>

@@ -1,0 +1,92 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(to right, #121212, #1c1b1b);
+  margin: 0;
+  animation: gradientAnimation 10s linear infinite;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.login-container {
+  min-width: 400px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.aling-end {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: 35px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+
+.mat-mdc-text-field-wrapper {
+  height: 5px;
+  flex: auto;
+}
+
+.button-big-width{
+  width: 50%;
+}
+
+.img-logo-af{
+  mix-blend-mode: lighten;
+}
+
+.aling-center{
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.d-flex{
+  display: flex;
+  flex-direction: column;
+}

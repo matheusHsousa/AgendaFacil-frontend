@@ -1,0 +1,95 @@
+<div class="margin-30">
+    <mat-card-content>
+      <form [formGroup]="FormCustomer" class="container">
+        <div class="inputLine">
+          <mat-form-field appearance="outline" class="input">
+            <mat-label>Nome da Empresa</mat-label>
+            <input matInput placeholder="Placeholder" formControlName="customer" />
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline" class="input">
+            <mat-label>Nome do responsável</mat-label>
+            <input matInput placeholder="Placeholder" formControlName="name" />
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline" class="input">
+            <mat-label>Tipo</mat-label>
+            <mat-select formControlName="type">
+              <mat-option *ngFor="let category of categorys" [value]="category.tipos">
+                {{ category.tipos }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+  
+        <div class="inputLine">
+          <mat-form-field appearance="outline" class="input">
+            <mat-label>CNPJ</mat-label>
+            <input matInput formControlName="cnpj" (input)="formatCnpj()" />
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline" class="input">
+            <mat-label>Telefone</mat-label>
+            <input matInput formControlName="celNumber" (input)="formatPhoneNumber()"/>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline" class="input">
+            <mat-label>CEP</mat-label>
+            <input matInput formControlName="cep" (blur)="onCepBlur()"/>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="input">
+            <mat-label>Endereço</mat-label>
+            <input matInput formControlName="address" />
+          </mat-form-field>
+        </div>
+  
+        <div class="inputLine">
+          <mat-form-field appearance="outline" class="input">
+            <mat-label>Número</mat-label>
+            <input matInput formControlName="addressNumber" />
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline" class="input">
+            <mat-label>Estado</mat-label>
+            <input matInput formControlName="state" />
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline" class="input">
+            <mat-label>Cidade</mat-label>
+            <input matInput formControlName="city" />
+          </mat-form-field>
+        </div>
+  
+        <div class="inputLine">
+          <mat-form-field appearance="outline" class="input">
+            <mat-label>Permissões</mat-label>
+            <mat-select formControlName="role">
+              <mat-option *ngFor="let role of roles" [value]="role.roles">
+                {{ role.roles }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="input">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="login" />
+            <mat-error *ngIf="FormCustomer.get('login')?.hasError('required')">Login is required</mat-error>
+            <mat-error *ngIf="FormCustomer.get('login')?.hasError('email')">Invalid email</mat-error>
+          </mat-form-field>          
+
+          <mat-form-field appearance="outline" class="input">
+            <mat-label>Senha</mat-label>
+            <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" />
+            <mat-icon matSuffix (click)="togglePasswordVisibility()">{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </mat-form-field>
+        </div>
+  
+        <div class="buttonLine">
+          <button class="button-width" mat-raised-button (click)="clean()">Desfazer</button>
+          <button class="button-width" mat-raised-button color="primary" (click)="save()">Salvar</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </div>
+  

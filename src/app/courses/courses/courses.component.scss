@@ -1,0 +1,105 @@
+.cardStyle {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.loading-spiner {
+  padding: 25px;
+  background: rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(132, 132, 132, 0.214);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  justify-content: space-between;
+}
+
+.cardContainer:hover {
+  box-shadow: 0 4px 8px rgba(233, 30, 99, 0.2);
+  border-color: rgba(233, 30, 99, 0.6);
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+}
+
+.cardTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gap-10 {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+  padding-top: 20px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.search-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.div-container {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.full-width {
+  flex: 1;
+  gap: 10px;
+}
+
+.input-100 {
+  width: 100% !important;
+}
+
+.button-container {
+  display: flex !important;
+  justify-content: flex-end !important;
+  margin-bottom: 30px !important;
+  gap: 10px !important;
+}
+
+::ng-deep .mat-mdc-card{
+ height: 250px !important;
+}
+
+@media (max-width: 767px) {
+  .cardStyle {
+    flex: 0 0 calc(50% - 30px);
+    max-width: calc(50% - 30px);
+  }
+}
+
+@media (max-width: 480px) {
+  .cardStyle {
+    flex: 0 0 calc(100% - 30px);
+    max-width: calc(100% - 30px);
+  }
+}

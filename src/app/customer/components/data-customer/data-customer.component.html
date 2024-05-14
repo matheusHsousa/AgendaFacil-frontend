@@ -1,0 +1,90 @@
+<div class="margin-30 margin-top-0">
+  <h1>Meus dados</h1>
+  <div class="centralize-icon">
+    <div (mouseenter)="onMouseOver()" (mouseleave)="onMouseOut()" class="centralize-icon"> 
+      <img class="round-icon" [src]="urlImage">
+      <button *ngIf="showEdit" mat-icon-button (click)="edit()" class="editIcon">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+</div>
+  <div class="details-section">
+    <div class="detail-item">
+      <span>Empresa</span>
+      <p>{{ formEditValues?.customer }}</p>
+    </div>
+    <div class="detail-item">
+      <span>Nome</span>
+      <p>{{ formEditValues?.name }}</p>
+    </div>
+    <div class="detail-item">
+      <span>Tipo</span>
+      <p>{{ formEditValues?.type }}</p>
+    </div>
+  </div>
+  <div class="details-section">
+    <div class="detail-item">
+      <span>CNPJ</span>
+      <p>{{ formEditValues?.cnpj }}</p>
+    </div>
+    <div class="detail-item">
+      <span>Telefone</span>
+      <p>{{ formEditValues?.celNumber }}</p>
+    </div>
+    <div class="detail-item">
+      <span>CEP</span>
+      <p>{{ formEditValues?.CEP }}</p>
+    </div>
+  </div>
+  <div class="details-section">
+    <div class="detail-item">
+      <span>Edereço</span>
+      <p>{{ formEditValues?.address }}</p>
+    </div>
+    <div class="detail-item">
+      <span>Número</span>
+      <p>{{ formEditValues?.addressNumber }}</p>
+    </div>
+    <div class="detail-item">
+      <span>Estado</span>
+      <p>{{ formEditValues?.state }}</p>
+    </div>
+  </div>
+  <div class="details-section">
+    <div class="detail-item">
+      <span>Cidade</span>
+      <p>{{ formEditValues?.city }}</p>
+    </div>
+    <div class="detail-item">
+      <span>Status</span>
+      <p>{{ formEditValues?.status }}</p>
+    </div>
+    <div class="detail-item">
+      <span>Email</span>
+      <p>{{ formEditValues?.login }}</p>
+    </div>
+  </div>
+
+  <div class="details-section">
+    <div class="detail-item">
+      <span>Descrição</span>
+      <p>{{ formEditValues?.description }}</p>
+    </div>
+    <div class="detail-item-button">
+      <span>{{ text }}</span>
+      <mat-slide-toggle [checked]="isChecked" (change)="onToggleChange($event)" matTooltip="De prefêrencia Ativar após o termino do cadastro">
+      </mat-slide-toggle>
+    </div>
+  </div>
+  <div class="button-align">
+    <button
+      mat-raised-button
+      color="primary"
+      routerLink="./EditCustomer"
+      class="button-width"
+    >
+      Editar
+      <mat-icon class="margin-top-bot">edit</mat-icon>
+    </button>
+  </div>
+</div>

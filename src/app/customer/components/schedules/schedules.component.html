@@ -1,0 +1,33 @@
+<mat-form-field class="margin-30" appearance="outline">
+  <mat-label>Escolha uma data</mat-label>
+  <input matInput [(ngModel)]="dataSelecionada" [matDatepicker]="picker" />
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+<button (click)="obterValorData()" mat-raised-button color="primary">Buscar data</button>
+
+<div class="margin-30">
+  <ng-container *ngFor="let item of listaItens; let lastItem = last">
+    <mat-list>
+      <mat-list-item> Agenda dia: {{ item.nome }} </mat-list-item>
+      <ng-container
+        *ngFor="let horario of item.horarios; let lastHorario = last"
+      >
+        <mat-list-item>
+          <div class="horario-item">
+            {{ horario }}
+            <span class="outra-informacao"> João Cleber  </span>
+            <span class="outra-informacao"> Dr Fernando </span>
+            <span class="outra-informacao"> (11) 97017-3398 </span>
+            <span class="outra-informacao"> Retorno Consulta  </span>
+            <button mat-icon-button> <mat-icon>delete</mat-icon> </button>
+
+            <button mat-icon-button> <mat-icon>edit</mat-icon> </button>
+          </div>
+        </mat-list-item>
+        <mat-divider *ngIf="!lastHorario"></mat-divider>
+      </ng-container>
+    </mat-list>
+    <mat-divider *ngIf="!lastItem"></mat-divider>
+  </ng-container>
+</div>

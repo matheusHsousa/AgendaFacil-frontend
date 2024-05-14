@@ -1,0 +1,168 @@
+<div class="margin-30">
+  <mat-card-content>
+    <form [formGroup]="formCustomer">
+      <h1>Minhas Imagens (max. 4)</h1>
+      <div class="testes">
+        <div *ngFor="let file of selectedFiles; let i = index" class="selected-image">
+          <div
+            class="image-container"
+            [ngStyle]="{
+              'background-image': 'url(' + getPreviewUrl(file) + ')'
+            }"
+          >
+            <img [src]="getPreviewUrl(file)" alt="Imagem Selecionada" />
+            <button
+              (click)="removeFile(i)"
+              mat-icon-button
+              class="close-button"
+            >
+              <mat-icon> close </mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <div *ngFor="let _ of defaultImages.slice(0, 4 - selectedFiles.length)" class="default-image">
+          <ng-container *ngIf="selectedFiles.length < 4">
+            <div class="center-container">
+              <button mat-icon-button (click)="onAddImage()" class="add-button">
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+          </ng-container>
+        </div>        
+      </div>
+      <div class="container">
+        <h1>Dados da empresa</h1>
+        <div class="inputLine">
+          <mat-form-field appearance="outline" class="input">
+            <mat-label>Nome da Empresa</mat-label>
+            <input
+              matInput
+              placeholder="Placeholder"
+              formControlName="customer"
+            />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="input">
+            <mat-label>Nome do responsável</mat-label>
+            <input matInput placeholder="Placeholder" formControlName="name" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="input">
+            <mat-label>Tipo</mat-label>
+            <mat-select formControlName="type">
+              <mat-option
+                *ngFor="let category of categorys"
+                [value]="category.tipos"
+              >
+                {{ category.tipos }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="inputLine">
+          <mat-form-field appearance="outline" class="input">
+            <mat-label>CNPJ</mat-label>
+            <input
+              matInput
+              formControlName="cnpj"
+              (input)="formatCnpj()"
+              [disabled]="desable"
+            />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="input">
+            <mat-label>Telefone</mat-label>
+            <input
+              matInput
+              formControlName="celNumber"
+              (input)="formatPhoneNumber()"
+            />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="input">
+            <mat-label>CEP</mat-label>
+            <input matInput formControlName="CEP" (blur)="onCepBlur()" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="input">
+            <mat-label>Endereço</mat-label>
+            <input matInput formControlName="address" />
+          </mat-form-field>
+        </div>
+
+        <div class="inputLine">
+          <mat-form-field appearance="outline" class="input">
+            <mat-label>Número</mat-label>
+            <input matInput formControlName="addressNumber" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="input">
+            <mat-label>Estado</mat-label>
+            <input matInput formControlName="state" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="input">
+            <mat-label>Cidade</mat-label>
+            <input matInput formControlName="city" />
+          </mat-form-field>
+        </div>
+
+        <div class="inputLine">
+          <mat-form-field appearance="outline" class="input">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="login" />
+            <mat-error *ngIf="formCustomer.get('login')?.hasError('required')"
+              >Login is required</mat-error
+            >
+            <mat-error *ngIf="formCustomer.get('login')?.hasError('email')"
+              >Invalid email</mat-error
+            >
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="input">
+            <mat-label>Senha</mat-label>
+            <input
+              matInput
+              formControlName="password"
+              [type]="hide ? 'password' : 'text'"
+            />
+            <mat-icon matSuffix (click)="togglePasswordVisibility()">{{
+              hide ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </mat-form-field>
+        </div>
+        <div class="inputLine">
+          <mat-form-field appearance="outline" class="input">
+            <mat-label>Descrição</mat-label>
+            <input matInput formControlName="description" />
+          </mat-form-field>
+        </div>
+        <div class="buttonLine">
+          <button class="button-width" mat-raised-button (click)="clean()">
+            Resetar
+          </button>
+          <button
+          
+          mat-raised-button
+          color="primary"
+          (click)="save()"
+          (click)="onUpload()"
+        >
+          Salvar e continuar
+        </button>
+          <button
+            class="button-width"
+            mat-raised-button
+            color="primary"
+            (click)="edit()"
+            (click)="onUpload()"
+          >
+            Registrar
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+</div>

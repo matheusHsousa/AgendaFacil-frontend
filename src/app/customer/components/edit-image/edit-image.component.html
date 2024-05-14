@@ -1,0 +1,8 @@
+<div class="margin-30">
+    <img class="icon" [src]="newImage ? getPreviewUrl(newImage) : url.img.iconPerfil" />
+
+    <div class="marin-top-20">
+      <input type="file" class="input" (change)="onFileSelected($event)"/>
+      <button mat-raised-button color="primary" class="button-width" (click)="uploadImage()" [disabled]="!newImage">Salvar</button>
+    </div>
+</div>

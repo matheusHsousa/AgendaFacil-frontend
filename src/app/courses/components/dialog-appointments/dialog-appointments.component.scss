@@ -1,0 +1,36 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.time-button {
+  border: 1px solid rgb(217, 216, 216);
+  border-radius: 0;
+  width: 144px;
+  height: 44px;
+}
+
+.time-button:hover{
+  background-color: #1b6790;
+  color: #fff;
+}
+
+.width-110{
+  width: 180px;
+  font-size: 19px;
+  font-style: oblique;
+}
+
+.table-wrapper{
+  overflow: auto;
+}
+
+.mdc-data-table__cell{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.mdc-data-table__header-cell{
+  font-size: 17px;
+}
